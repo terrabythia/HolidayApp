@@ -14,17 +14,12 @@ import TripItem from './trip-item';
 
 export default class extends React.Component {
 
-    static navigationOptions = {
-        tabBarLabel: 'Reizen',
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="plane" style={{color: tintColor}} />
-        ),
-    };
-
     componentDidMount() {
 
+        console.log('Trips did mount, props?', this.props);
+
         // if trip is current trip, go to first
-        if (true) {
+        if (false) {
             this.props.navigation.navigate('TripDetail', { color: 'white' });
         }
 
@@ -69,6 +64,8 @@ export default class extends React.Component {
     }
 
     render() {
+
+
 
         let items = [
             {
@@ -139,7 +136,12 @@ export default class extends React.Component {
             }
         ];
 
+        items = this.props.trips.store.map((trip) => {
+            return Object.assign({}, trip);
+        });
         // TODO: meer echt een tijdlijn van maken met jaar en maand sections
+
+
 
         let listItems = [];
         for (let item of items) {
@@ -149,24 +151,26 @@ export default class extends React.Component {
                         <LinearGradient
                             start={{x: 0.0, y: 0}} end={{x: 0, y: 1.0}}
                             locations={[0,1]}
-                            colors={['white', item.color]}
+                            colors={['white', 'rgb(0, 179, 134)']}
                             style={{ width: 4, marginLeft: 5, marginRight: 5, flex: 1 }} />
                     </View>
                 );
             }
             listItems.push(
-                <TripItem onPress={() => this.props.navigation.navigate('TripDetail', { color: item.color })} key={item.id} {...item} />
+                <TripItem onPress={() => this.props.navigation.navigate('TripDetail', { color: 'rgb(0, 179, 134)' })}
+                          key={item.id}
+                          {...item} />
             );
             let secondColor = 'rgb(255,255,255)';
             if (items.indexOf(item) < items.length-1) {
-                secondColor = items[items.indexOf(item)+1].color;
+                secondColor = 'rgb(0, 179, 134)';
             }
             listItems.push(
                 <View key={'gradient-'+item.id} style={{ height: 40 }}>
                     <LinearGradient
                         start={{x: 0.0, y: 0}} end={{x: 0, y: 1.0}}
                         locations={[0,1]}
-                        colors={[item.color, secondColor]}
+                        colors={['rgb(0, 179, 134)', secondColor]}
                         style={{ width: 4, marginLeft: 5, marginRight: 5, flex: 1 }} />
                 </View>
             );

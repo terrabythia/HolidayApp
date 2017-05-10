@@ -3,7 +3,6 @@
 import React from 'react';
 import {Dimensions, View, Image, Text, ScrollView, TouchableOpacity, ListView} from 'react-native';
 import {Container, Content, Thumbnail, Card, CardItem, Header, Left, Right, Body, Button, Icon, Title} from 'native-base';
-import MapView from 'react-native-maps';
 import ActionButton from 'react-native-action-button';
 import TripDayItem from './trip-day-item';
 import Lightbox from 'react-native-lightbox';

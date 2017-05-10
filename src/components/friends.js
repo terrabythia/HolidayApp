@@ -7,17 +7,9 @@ import ActionButton from 'react-native-action-button';
 
 export default class extends React.Component {
 
-    static navigationOptions = {
-        tabBarLabel: 'Vrienden',
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="ice-cream" style={{color: tintColor}} />
-        ),
-    };
-
     render() {
         return (
             <Container>
-
 
 
                 <ActionButton buttonColor="rgba(231,76,60,1)">

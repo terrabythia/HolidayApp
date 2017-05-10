@@ -1,11 +1,11 @@
 'use strict';
 
 import { StackNavigator } from 'react-navigation'
-import Profile from './profile';
+import ProfileContainer from './../containers/profile';
 
 export default StackNavigator({
     Profile: {
-        screen: Profile
+        screen: ProfileContainer
     }
 }, {
     headerMode: 'none'

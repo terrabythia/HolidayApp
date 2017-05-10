@@ -1,11 +1,11 @@
 'use strict';
 
 import { StackNavigator } from 'react-navigation'
-import Friends from './friends';
+import SettingsContainer from './../containers/settings';
 
 export default StackNavigator({
-    Friends: {
-        screen: Friends
+    Settings: {
+        screen: SettingsContainer
     }
 }, {
     headerMode: 'none'

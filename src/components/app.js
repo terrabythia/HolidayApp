@@ -2,10 +2,10 @@
 
 import { TabNavigator } from 'react-navigation';
 
-import TripNavigator from './trip-navigator';
-import FriendsNavigator from './friends-navigator';
-import ProfileNavigator from './profile-navigator';
-import SettingsNavigator from './settings-navigator';
+import TripNavigator from './../navigators/trip-navigator';
+import FriendsNavigator from './../navigators/friends-navigator';
+import ProfileNavigator from './../navigators/profile-navigator';
+import SettingsNavigator from './../navigators/settings-navigator';
 
 export default TabNavigator({
     Trips: {

@@ -2,22 +2,33 @@
 
 import React from 'react';
 
+import moment from 'moment';
+
 import {View, TouchableOpacity, Text, ScrollView} from 'react-native';
 import {Thumbnail, Icon} from 'native-base';
 
 export default class extends React.Component {
 
     render() {
+
+        const startDate = moment(this.props.startDate),
+              endDate = moment(this.props.endDate);
+
+        let currentTripView = null;
+        if (moment().diff(startDate, 'days') >= 0 && moment().diff(endDate, 'days') <= 0) {
+            currentTripView = <Text style={{fontWeight: 'bold'}}>Huidige reis</Text>;
+        }
+
         return (
             <TouchableOpacity {...this.props}>
                 <View style={{padding: 0, margin: 0, flexDirection: 'row'}}>
                     <View>
-                        <View style={{ width: 4, marginLeft: 5, marginRight: 5, backgroundColor: this.props.color, flex: 1}} />
+                        <View style={{ width: 4, marginLeft: 5, marginRight: 5, backgroundColor: 'rgb(118,91,147)', flex: 1}} />
                     </View>
                     <View>
                         <Text style={{fontSize: 18, fontWeight: 'bold'}}>{this.props.title}</Text>
-                        <Text style={{fontWeight: 'bold'}}>Huidige reis</Text>
-                        <Text>{this.props.startDate.format('dddd, MMMM Do YYYY')} - {this.props.endDate.format('dddd, MMMM Do YYYY')}</Text>
+                        {currentTripView}
+                        <Text>{moment(this.props.startDate).format('dddd, MMMM Do YYYY')} - {moment(this.props.endDate).format('dddd, MMMM Do YYYY')}</Text>
 
                         <ScrollView
                             horizontal={true}>

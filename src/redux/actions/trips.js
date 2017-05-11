@@ -39,5 +39,9 @@ export const storeTrip = (trip) => {
     };
 };
 
+export const destroyTrip = (trip) => {
+
+};
+
 
 

@@ -1,11 +1,12 @@
 'use strict';
 
 import React from 'react';
-import {Dimensions, View, Image, Text, ScrollView, TouchableOpacity, ListView} from 'react-native';
+import {Dimensions, View, Image, Text, ScrollView, TouchableOpacity, ListView, Alert} from 'react-native';
 import {Container, Content, Thumbnail, Card, CardItem, Header, Left, Right, Body, Button, Icon, Title} from 'native-base';
 import ActionButton from 'react-native-action-button';
 import TripDayItem from './trip-day-item';
 import Lightbox from 'react-native-lightbox';
+import {destroyTrip} from './../redux/actions/trips';
 
 const SCREEN_DIMENSIONS = Dimensions.get('window');
 
@@ -46,16 +47,31 @@ export default class extends React.Component {
             onPress={() => this.props.navigation.navigate('TripDayDetail')} />;
     };
 
+    _reallyDeleteTrip = () => {
+        this.props.dispatch(
+
+        );
+    };
+
+    _deleteTrip = async () => {
+        // show prompt...
+        let answer = await Alert.alert(
+            'Reis verwijderen',
+            'Weet je zeker dat je deze reis definitief wilt verwijderen?',
+            [
+                {text: 'Nee', style: 'cancel'},
+                {text: 'Ja, verwijderen', style: 'destructive', onPress: this._reallyDeleteTrip}
+            ]
+        );
+        console.log('alert answer', answer);
+    };
+
     componentDidMount() {
         setTimeout(() => this.setState({mounted: true}), 300);
     }
 
 
     render() {
-
-        let days = [
-            1, 2, 3, 4
-        ];
 
         return (
             <View>
@@ -107,6 +123,10 @@ export default class extends React.Component {
                         </ListView>
 
                     </View>
+
+                    <Button block warning onPress={this._deleteTrip}>
+                        <Text>Verwijder reis</Text>
+                    </Button>
 
                     <View style={{ height: 100 }} />
 

@@ -23,12 +23,14 @@ const enhancer = compose(
 const realmObjects = {
     trips: realm.objects('Trip')
 };
+realmObjects.trips.addListener((trips, changes) => {
+
+});
+
 let defaultState = {
     trips: {
         store: realmObjects.trips
     },
 };
-
-console.log('default state is', defaultState);
 
 export default createStore(reducer, defaultState, enhancer);

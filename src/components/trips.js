@@ -14,9 +14,12 @@ import TripItem from './trip-item';
 
 export default class extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
 
-        console.log('Trips did mount, props?', this.props);
 
         // if trip is current trip, go to first
         if (false) {
@@ -137,11 +140,18 @@ export default class extends React.Component {
         ];
 
         items = this.props.trips.store.map((trip) => {
-            return Object.assign({}, trip);
+            return Object.assign({}, trip, {
+                startDate: moment(trip.startDate),
+                endDate: moment(trip.endDate)
+            });
         });
+
         // TODO: meer echt een tijdlijn van maken met jaar en maand sections
 
-
+        let futureTrips = items.filter((trip) => {
+           return moment().diff(trip.startDate, 'days') > 0;
+        });
+        // TODO: split
 
         let listItems = [];
         for (let item of items) {
